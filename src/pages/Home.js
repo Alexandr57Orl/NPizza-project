@@ -10,8 +10,11 @@ import { setIsLoading } from "../services/slices/loadingSlice";
 import { useDispatch } from "react-redux";
 import { setItems } from "../services/slices/itemsSlice";
 import { SearchContext } from "../App";
+import qs from "qs";
+import { useNavigate } from "react-router-dom";
 
 export const Home = () => {
+  const navigate = useNavigate()
   const { searchValue } = React.useContext(SearchContext);
   const dispatch = useDispatch();
 
@@ -22,6 +25,15 @@ export const Home = () => {
   const { categoryId, sort } = useSelector((state) => state.filter);
   // get pagination from Redux
   const { currentPage } = useSelector((state) => state.pagination);
+
+  React.useEffect(()=>{
+    const queryString = qs.stringify({
+      sortPropety:sort.sortPropety,
+      categoryId,
+      currentPage
+    })
+    navigate(`?${queryString}`)
+  },[categoryId,sort.sortPropety,currentPage])
 
   React.useEffect(() => {
     changeLoading(true);
