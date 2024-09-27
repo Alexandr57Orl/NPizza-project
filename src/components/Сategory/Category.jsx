@@ -18,7 +18,7 @@ export const Category = () => {
         {categories.map((category, index) => (
           <li
             key={category}
-            onClick={(id) => onChangeCategory(id)}
+            onClick={() => onChangeCategory(index)}
             className={categoryId === index ? "active" : ""}
           >
             {category}
