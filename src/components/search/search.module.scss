@@ -1,0 +1,128 @@
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.input_search {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  width: 15rem;
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+
+  &:focus {
+    outline: none;
+    border-color: #aaa;
+    width: 25rem;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
+
+  &:hover {
+    border-color: #aaa;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    width: 25rem;
+  }
+
+  &:active {
+    border-color: #666;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background-color: #f0f0f0;
+  }
+
+  &::placeholder {
+    color: #999;
+  }
+}
+
+.icon {
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.icon_clear {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  opacity: 0.5;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 1200px) {
+  .input_search {
+    margin-inline-end: 2rem;
+  }
+}
+/* Для экранов с шириной более 768 пикселей */
+@media (max-width: 800px) {
+  .root {
+    gap: 20px;
+  }
+  .input_search {
+    width: 15rem;
+    margin-inline-end: 1rem;
+  }
+}
+
+/* Для экранов с шириной от 480 пикселей до 767 пикселей */
+@media (min-width: 480px) and (max-width: 995px) {
+  .root {
+    gap: 15px;
+  }
+  .input_search {
+    margin-block-start: 1rem;
+    width: 10rem;
+    &:focus {
+      width: 15rem;
+    }
+    &:hover {
+      width: 15rem;
+    }
+  }
+}
+
+/* Для экранов с шириной менее 480 пикселей */
+@media (max-width: 650px) {
+  .root {
+    flex-direction: column;
+    align-items: center;
+  }
+  .input_search {
+    width: 15rem;
+    &:focus {
+      width: 15rem;
+    }
+    &:hover {
+      width: 15rem;
+    }
+  }
+  .icon {
+    width: 25px;
+    height: 25px;
+    margin-block-start: 1rem;
+    display: none;
+  }
+}
+
+@media (max-width: 430px) {
+  .input_search {
+    margin-block-start: 1rem;
+    &:focus {
+      width: 15rem;
+    }
+    &:hover {
+      width: 15rem;
+    }
+  }
+  .icon {
+    display: none;
+  }
+}

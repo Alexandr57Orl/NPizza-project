@@ -1,0 +1,51 @@
+.root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  li {
+    margin: 0 10px;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: none;
+    background-color: #fe5f1e;
+    color: #fff;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+      background-color: #f2ccab;
+      transform: scale(1.1);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+      a {
+        color: #fe5f1e;
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+    }
+
+    a {
+      display: block; // делаем ссылку блоковым элементом
+      width: 100%; // ширина ссылки равна ширине li
+      height: 100%; // высота ссылки равна высоте li
+      padding: 0; // удаляем паддинг для ссылки
+      border-radius: 0; // удаляем радиус для ссылки
+      background-color: transparent; // делаем фон ссылки прозрачным
+      color: #fff; // цвет текста ссылки
+      text-decoration: none; // удаляем подчеркивание ссылки
+      transition: color 0.2s ease;
+    }
+  }
+  :global {
+    .selected {
+      background-color: #cf430c;
+      color: white;
+      opacity: 0.5;
+    }
+  }
+}
