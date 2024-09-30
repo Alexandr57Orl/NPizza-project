@@ -14,7 +14,7 @@ import qs from "qs";
 import { useNavigate } from "react-router-dom";
 
 export const Home = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { searchValue } = React.useContext(SearchContext);
   const dispatch = useDispatch();
 
@@ -22,18 +22,19 @@ export const Home = () => {
     dispatch(setIsLoading(value));
   };
   //redux-test
-  const { categoryId, sort } = useSelector((state) => state.filter);
+  const { categoryId, sort, currentPage } = useSelector(
+    (state) => state.filter
+  );
   // get pagination from Redux
-  const { currentPage } = useSelector((state) => state.pagination);
 
-  React.useEffect(()=>{
+  React.useEffect(() => {
     const queryString = qs.stringify({
-      sortPropety:sort.sortPropety,
+      sortPropety: sort.sortPropety,
       categoryId,
-      currentPage
-    })
-    navigate(`?${queryString}`)
-  },[categoryId,sort.sortPropety,currentPage])
+      currentPage,
+    });
+    navigate(`?${queryString}`);
+  }, [categoryId, sort.sortPropety, currentPage]);
 
   React.useEffect(() => {
     changeLoading(true);
