@@ -5,21 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../../services/slices/cartSlice";
 
 const variableTesto = ["Тонкое", "Традиционное"];
+
 const Pizza = (props) => {
   const { title, price, imageUrl, sizes, types, id } = props;
 
   const dispatch = useDispatch();
-
-  const addPizzaToCart = () => {
-    const item = {
-      id: uuidv4(),
-      ...props,
-      size: activeSize,
-      type: variableTesto[activeType],
-    };
-
-    dispatch(addItem(item));
-  };
 
   const cartItem = useSelector((state) =>
     state.cart.items.find((item) => item.id === id)
@@ -29,6 +19,17 @@ const Pizza = (props) => {
   const [activeType, setActiveType] = React.useState(0);
 
   const [activeSize, setActiveSize] = React.useState(0);
+
+  const addPizzaToCart = () => {
+    const item = {
+      id: uuidv4(),
+      ...props,
+      size: sizes[activeSize],
+      type: variableTesto[activeType],
+    };
+
+    dispatch(addItem(item));
+  };
 
   return (
     <div className="pizza-block-wrapper">
@@ -48,11 +49,11 @@ const Pizza = (props) => {
             ))}
           </ul>
           <ul>
-            {sizes.map((size) => (
+            {sizes.map((size, index) => (
               <li
                 key={uuidv4()}
-                onClick={() => setActiveSize(size)}
-                className={activeSize === size ? "active" : ""}
+                onClick={() => setActiveSize(index)}
+                className={activeSize === index ? "active" : ""}
               >
                 {size} см.
               </li>
