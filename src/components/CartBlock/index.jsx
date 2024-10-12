@@ -5,14 +5,30 @@ import { CartPizzas } from "./cartPizzas";
 import { clearItems } from "../../services/slices/cartSlice";
 import { CartEmpty } from "../cartEmpty/cartEmpty";
 import { v4 as uuidv4 } from "uuid";
+import { selectCart } from "../../services/slices/cartSlice";
 export const CartBlock = () => {
   const dispatch = useDispatch();
-  const { items } = useSelector((state) => state.cart);
-  const totalPrice = items.reduce(
-    (sum, item) => sum + item.price * item.count,
-    0
-  );
-  const countPizzas = items.reduce((sum, item) => sum + item.count, 0);
+  const { items } = useSelector(selectCart);
+  const [totalPrice, setTotalPrice] = React.useState(0);
+  const [countPizzas, setCountPizzas] = React.useState(0);
+
+  React.useEffect(() => {
+    const calculateTotalPrice = () => {
+      const total = items.reduce(
+        (sum, item) => sum + item.price * item.count,
+        0
+      );
+      setTotalPrice(total);
+    };
+
+    const calculateCountPizzas = () => {
+      const count = items.reduce((sum, item) => sum + item.count, 0);
+      setCountPizzas(count);
+    };
+
+    calculateTotalPrice();
+    calculateCountPizzas();
+  }, [items]);
   const clickClearCart = () => {
     if (window.confirm("Вы действительно хотите очистить корзину?")) {
       dispatch(clearItems());

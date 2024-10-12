@@ -12,7 +12,15 @@ export const CartPizzas = (props) => {
   const dispatch = useDispatch();
 
   const onclickPlus = () => {
-    dispatch(addItem({ id }));
+    dispatch(addItem({
+      id,
+      title,
+      price,
+      imageUrl,
+      size,
+      type,
+      count: count + 1,
+    }));
   };
 
   const onclickMinus = () => {
@@ -60,7 +68,7 @@ export const CartPizzas = (props) => {
         <b>{count}</b>
         <div
           className="button button--outline button--circle cart__item-count-plus"
-          onClick={onclickPlus}
+          onClick={ onclickPlus}
         >
           <svg
             width="10"

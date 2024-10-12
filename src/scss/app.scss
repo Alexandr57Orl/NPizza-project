@@ -25,9 +25,14 @@ body {
   padding: 40px 0;
 
   &__error-info {
-    margin: 100px auto;
+    margin: 23% 73%;
     width: 500px;
     text-align: center;
+    background-color: #fe5f1e; /* красный фон */
+    color: #fff; /* белый текст */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 
     h2 {
       font-size: 32px;
@@ -38,6 +43,18 @@ body {
     p {
       font-size: 20px;
     }
+
+    &:hover {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      transition: 0.3s ease-in-out;
+      cursor: pointer;
+      background-color: #c56a46;
+    }
+  }
+
+  &__error-text:hover {
+    color: #fff;
+    transition: 0.3s ease-in-out;
   }
 
   &__title {

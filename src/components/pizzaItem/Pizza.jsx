@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 
 import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../../services/slices/cartSlice";
+import { selectCartItemById } from "../../services/slices/cartSlice";
 
 const variableTesto = ["Тонкое", "Традиционное"];
 
@@ -11,9 +12,7 @@ const Pizza = (props) => {
 
   const dispatch = useDispatch();
 
-  const cartItem = useSelector((state) =>
-    state.cart.items.find((item) => item.id === id)
-  );
+  const cartItem = useSelector(selectCartItemById(id));
   const addedCount = cartItem ? cartItem.count : 0;
 
   const [activeType, setActiveType] = React.useState(0);
