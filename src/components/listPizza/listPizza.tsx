@@ -1,4 +1,3 @@
-import React from "react";
 import Pizza from "../pizzaItem/Pizza";
 // import getItems from "../../utilits/pizzaItems";
 import Skeleton from "../pizzaItem/Skeleton";
@@ -6,9 +5,10 @@ import { v4 as uuidv4 } from "uuid";
 import { useSelector } from "react-redux";
 
 import { Link } from "react-router-dom";
+import { RootState } from "../../services/store";
 
 export const ListPizza = () => {
-  const { items, status } = useSelector((state) => state.items);
+  const { items, status } = useSelector((state: RootState) => state.items);
 
   const filteredItems = items.map((pizza) => (
     <Pizza key={`pizza-${pizza.id}-${uuidv4()}`} {...pizza}></Pizza>

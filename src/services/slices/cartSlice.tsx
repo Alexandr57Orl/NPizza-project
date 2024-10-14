@@ -1,6 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { RootState } from "../store";
 
-const initialState = {
+export interface ICartSlice {
+  items: {
+    id: number;
+    size: number;
+    type: string;
+    count: number;
+    price: number;
+  }[];
+  totalPrice: number;
+}
+const initialState: ICartSlice = {
   items: [],
   totalPrice: 0,
 };
@@ -22,8 +33,7 @@ export const cartSlice = createSlice({
       } else {
         state.items.push({ ...action.payload, count: 1 });
       }
-      state.totalPrice =
-        (state.totalPrice || 0) + action.payload.price * (state.count || 1);
+      state.totalPrice = (state.totalPrice || 0) + action.payload.price;
     },
     minusItem(state, action) {
       const item = state.items.find((obj) => obj.id === action.payload.id);
@@ -33,17 +43,17 @@ export const cartSlice = createSlice({
         item.count--;
       }
     },
-    removeItem(state, action) {
+    removeItem(state: ICartSlice, action) {
       state.items = state.items.filter((item) => item.id !== action.payload);
     },
-    clearItems(state) {
+    clearItems(state: ICartSlice) {
       state.items = [];
     },
   },
 });
 
-export const selectCart = (state) => state.cart;
-export const selectCartItemById = (id) => (state) =>
+export const selectCart = (state: RootState) => state.cart;
+export const selectCartItemById = (id: number) => (state: RootState) =>
   state.cart.items.find((obj) => obj.id === id);
 
 // Action creators are generated for each case reducer function
