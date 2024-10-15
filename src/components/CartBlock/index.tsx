@@ -116,7 +116,7 @@ export const CartBlock = () => {
       <div className="content__items">
         {items.map((obj) => (
           <li key={uuidv4()}>
-            <CartPizzas {...obj} />
+            <CartPizzas title={""} imageUrl={""} {...obj} />
           </li>
         ))}
       </div>

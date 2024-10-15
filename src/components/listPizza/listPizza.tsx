@@ -11,7 +11,12 @@ export const ListPizza = () => {
   const { items, status } = useSelector((state: RootState) => state.items);
 
   const filteredItems = items.map((pizza) => (
-    <Pizza key={`pizza-${pizza.id}-${uuidv4()}`} {...pizza}></Pizza>
+    <Pizza
+      sizes={[]}
+      types={[]}
+      key={`pizza-${pizza.id}-${uuidv4()}`}
+      {...pizza}
+    ></Pizza>
   ));
 
   const skeletons = [...new Array(7)].map(() => <Skeleton key={uuidv4()} />);

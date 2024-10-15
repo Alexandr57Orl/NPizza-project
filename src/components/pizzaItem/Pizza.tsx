@@ -6,8 +6,16 @@ import { addItem } from "../../services/slices/cartSlice";
 import { selectCartItemById } from "../../services/slices/cartSlice";
 
 const variableTesto = ["Тонкое", "Традиционное"];
+interface IPizzaProps {
+  title: string;
+  price: number;
+  imageUrl: string;
+  sizes: number[];
+  types: number[];
+  id: number;
+}
 
-const Pizza = (props) => {
+const Pizza = (props: IPizzaProps) => {
   const { title, price, imageUrl, sizes, types, id } = props;
 
   const dispatch = useDispatch();
@@ -21,10 +29,12 @@ const Pizza = (props) => {
 
   const addPizzaToCart = () => {
     const item = {
-      id: uuidv4(),
+      Itemid: uuidv4(),
       ...props,
       size: sizes[activeSize],
       type: variableTesto[activeType],
+      sizes: props.sizes,
+      types: props.types,
     };
 
     dispatch(addItem(item));

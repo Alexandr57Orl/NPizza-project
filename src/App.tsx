@@ -1,9 +1,9 @@
 import "./scss/app.scss";
 
-import { Home } from "./pages/Home.js";
+import { Home } from "./pages/Home";
 import { Header } from "./components/header/Header";
-import { NotFound } from "./pages/NotFound.jsx";
-import { Cart } from "./pages/Cart.jsx";
+import { NotFound } from "./pages/NotFound";
+import { Cart } from "./pages/Cart";
 import { Routes, Route } from "react-router-dom";
 
 function App() {

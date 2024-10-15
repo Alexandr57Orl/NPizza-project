@@ -1,4 +1,3 @@
-import React from "react";
 import { useDispatch } from "react-redux";
 import {
   addItem,
@@ -6,21 +5,33 @@ import {
   removeItem,
 } from "../../services/slices/cartSlice";
 
-export const CartPizzas = (props) => {
+interface ICartPizzasProps {
+  id: number;
+  title: string;
+  price: number;
+  imageUrl: string;
+  size: number;
+  count: number;
+  type: string;
+}
+
+export const CartPizzas = (props: ICartPizzasProps) => {
   const { id, title, price, imageUrl, size, count, type } = props;
 
   const dispatch = useDispatch();
 
   const onclickPlus = () => {
-    dispatch(addItem({
-      id,
-      title,
-      price,
-      imageUrl,
-      size,
-      type,
-      count: count + 1,
-    }));
+    dispatch(
+      addItem({
+        id,
+        title,
+        price,
+        imageUrl,
+        size,
+        type,
+        count: count + 1,
+      })
+    );
   };
 
   const onclickMinus = () => {
@@ -68,7 +79,7 @@ export const CartPizzas = (props) => {
         <b>{count}</b>
         <div
           className="button button--outline button--circle cart__item-count-plus"
-          onClick={ onclickPlus}
+          onClick={onclickPlus}
         >
           <svg
             width="10"

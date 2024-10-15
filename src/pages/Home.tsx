@@ -9,15 +9,16 @@ import { useDispatch } from "react-redux";
 import { fetchItems } from "../services/slices/itemsSlice";
 import qs from "qs";
 import { useNavigate } from "react-router-dom";
+import { RootState } from "../services/store";
 
 export const Home = () => {
   const navigate = useNavigate();
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<any>();
 
   //redux-test
   const { categoryId, sort, currentPage, searchValue } = useSelector(
-    (state) => state.filter
+    (state: RootState) => state.filter
   );
   // get pagination from Redux
 

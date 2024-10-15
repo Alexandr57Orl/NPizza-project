@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import cartEmptyImg from "../../assets/img/empty-cart.png";
+const cartEmptyImg = require("../../assets/img/empty-cart.png");
 
 export const CartEmpty = () => {
   return (

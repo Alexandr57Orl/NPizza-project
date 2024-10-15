@@ -2,26 +2,27 @@ import React from "react";
 import { setSortType } from "../../services/slices/filterSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { v4 as uuidv4 } from "uuid";
-import { popapList } from "../../utilits/sortList.js";
+import { popapList } from "../../utilits/sortList";
+import { RootState } from "../../services/store";
 
 export const Sort = () => {
   const [sortActive, setSortActive] = React.useState(false);
-  const clickRef = React.useRef();
+  const clickRef = React.useRef<HTMLSpanElement>(null);
 
-  const sortType = useSelector((state) => state.filter.sort);
+  const sortType = useSelector((state: RootState) => state.filter.sort);
   const dispatch = useDispatch();
 
-  const onChangeSort = (obj) => {
+  const onChangeSort = (obj: { name: string; sortPropety: string }) => {
     dispatch(setSortType(obj));
   };
 
-  const onClickSelectItem = (obj) => {
+  const onClickSelectItem = (obj: { name: string; sortPropety: string }) => {
     onChangeSort(obj);
     setSortActive(false);
   };
 
   React.useEffect(() => {
-    const handleClickOutside = (event) => {
+    const handleClickOutside = (event: MouseEvent) => {
       if (
         clickRef.current &&
         !event.composedPath().includes(clickRef.current)
