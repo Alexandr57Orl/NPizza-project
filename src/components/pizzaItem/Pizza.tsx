@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../../services/slices/cartSlice";
 import { selectCartItemById } from "../../services/slices/cartSlice";
+import PizzaPopup from "./PizzaPopap";
 
 const variableTesto = ["Тонкое", "Традиционное"];
 interface IPizzaProps {
@@ -13,10 +14,20 @@ interface IPizzaProps {
   sizes: number[];
   types: number[];
   id: number;
+  description: string;
 }
 
-const Pizza = (props: IPizzaProps) => {
-  const { title, price, imageUrl, sizes, types, id } = props;
+const Pizza: React.FC<IPizzaProps> = (props: IPizzaProps) => {
+  const { title, price, imageUrl, sizes, types, id, description } = props;
+  //Логика попапа
+  const [isPopupOpen, setIsPopupOpen] = React.useState(false);
+  const handlePopupOpen = () => {
+    setIsPopupOpen(true);
+  };
+
+  const handlePopupClose = () => {
+    setIsPopupOpen(false);
+  };
 
   const dispatch = useDispatch();
 
@@ -43,7 +54,12 @@ const Pizza = (props: IPizzaProps) => {
   return (
     <div className="pizza-block-wrapper">
       <div className="pizza-block">
-        <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
+        <img
+          className="pizza-block__image"
+          src={imageUrl}
+          alt="Pizza"
+          onClick={handlePopupOpen}
+        />
         <h4 className="pizza-block__title">{title}</h4>
         <div className="pizza-block__selector">
           <ul>
@@ -93,6 +109,19 @@ const Pizza = (props: IPizzaProps) => {
           </div>
         </div>
       </div>
+      {isPopupOpen && (
+        <PizzaPopup
+          title={props.title}
+          price={props.price}
+          imageUrl={props.imageUrl}
+          sizes={props.sizes}
+          types={props.types}
+          onClose={handlePopupClose}
+          description={description}
+          addPizzaInPopap={addPizzaToCart}
+          id={id}
+        />
+      )}
     </div>
   );
 };

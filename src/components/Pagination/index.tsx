@@ -3,7 +3,7 @@ import styles from "../Pagination/pagination.module.scss";
 import { useDispatch } from "react-redux";
 import { setCurrentPage } from "../../services/slices/filterSlice";
 
-const Pagination = () => {
+const Pagination: React.FC = () => {
   const dispatch = useDispatch();
 
   const onChangePage = (arg: number) => {

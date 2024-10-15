@@ -7,13 +7,14 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { RootState } from "../../services/store";
 
-export const ListPizza = () => {
+export const ListPizza: React.FC = () => {
   const { items, status } = useSelector((state: RootState) => state.items);
 
   const filteredItems = items.map((pizza) => (
     <Pizza
       sizes={[]}
       types={[]}
+      description=""
       key={`pizza-${pizza.id}-${uuidv4()}`}
       {...pizza}
     ></Pizza>

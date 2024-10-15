@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import { popapList } from "../../utilits/sortList";
 import { RootState } from "../../services/store";
 
-export const Sort = () => {
+export const Sort: React.FC = () => {
   const [sortActive, setSortActive] = React.useState(false);
   const clickRef = React.useRef<HTMLSpanElement>(null);
 

@@ -3,7 +3,7 @@ import Search from "../search";
 import { useSelector } from "react-redux";
 import { selectCart } from "../../services/slices/cartSlice";
 
-export const Header = () => {
+export const Header: React.FC = () => {
   const { items } = useSelector(selectCart);
   const countPizzas = items.reduce((sum, item) => sum + item.count, 0);
   const totalPrice = items.reduce(

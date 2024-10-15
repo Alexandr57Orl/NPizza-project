@@ -15,7 +15,9 @@ interface ICartPizzasProps {
   type: string;
 }
 
-export const CartPizzas = (props: ICartPizzasProps) => {
+export const CartPizzas: React.FC<ICartPizzasProps> = (
+  props: ICartPizzasProps
+) => {
   const { id, title, price, imageUrl, size, count, type } = props;
 
   const dispatch = useDispatch();

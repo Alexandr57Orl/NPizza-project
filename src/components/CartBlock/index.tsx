@@ -6,7 +6,7 @@ import { clearItems } from "../../services/slices/cartSlice";
 import { CartEmpty } from "../cartEmpty/cartEmpty";
 import { v4 as uuidv4 } from "uuid";
 import { selectCart } from "../../services/slices/cartSlice";
-export const CartBlock = () => {
+export const CartBlock: React.FC = () => {
   const dispatch = useDispatch();
   const { items } = useSelector(selectCart);
   const [totalPrice, setTotalPrice] = React.useState(0);
