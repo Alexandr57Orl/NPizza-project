@@ -1,43 +1,81 @@
-// src/components/pizzaItem/PizzaPopup.tsx
 import React from "react";
 import styles from "./PizzaPopup.module.scss";
 import { Link } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface IPizzaPopupProps {
   title: string;
   price: number;
   imageUrl: string;
-  sizes: number[];
-  types: number[];
   onClose: () => void;
   description: string; // добавить description
-  addPizzaInPopap(id: number): void;
+  addPizzaInPopap: (id: number) => void;
   id: number;
+  isOpen: boolean;
 }
 
 const PizzaPopup: React.FC<IPizzaPopupProps> = (props) => {
+  const {
+    title,
+    price,
+    imageUrl,
+    description,
+    isOpen,
+    addPizzaInPopap,
+    id,
+    onClose,
+  } = props;
   const handleAddToCart = () => {
     // вызвать функцию добавления пиццы в корзину
-    props.addPizzaInPopap(props.id);
+    addPizzaInPopap(id);
   };
+
   return (
-    <div className={styles.popupContainer} onClick={props.onClose}>
-      <div className={styles.popupContent} onClick={(e) => e.stopPropagation()}>
-        <button className={styles.closeButton} onClick={props.onClose}>
-          Закрыть
-        </button>
-        <img src={props.imageUrl} alt={props.title} />
-        <h2>{props.title}</h2>
-        <p>{props.description}</p>
-        <p>Цена: {props.price} руб.</p>
-        <div className={styles.footerBtn}>
-          <button onClick={handleAddToCart}>Добавить в корзину</button>
-          <button>
-            <Link to="/cart">Перейти в корзину</Link>
-          </button>
-        </div>
-      </div>
-    </div>
+    <AnimatePresence mode="wait" onExitComplete={() => onClose()}>
+      {isOpen && (
+        <motion.div
+          className={styles.popupContainer}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0, transition: { duration: 0.3 } }}
+          onMouseDown={(e) => {
+            if (e.target === e.currentTarget) {
+              onClose();
+            }
+          }}
+        >
+          <motion.div
+            className={styles.popupContent}
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.2 } }}
+          >
+            <button
+              className={styles.closeButton}
+              onClick={(e) => {
+                if (e.target === e.currentTarget) onClose();
+              }}
+            >
+              Закрыть
+            </button>
+            <img
+              src={imageUrl}
+              alt={title}
+              onClick={(e) => e.stopPropagation()}
+            />
+            <h2>{title}</h2>
+            <p onClick={(e) => e.stopPropagation()}>{description}</p>
+            <p>Цена: {price} руб.</p>
+            <div className={styles.footerBtn}>
+              <button onClick={handleAddToCart}>Добавить в корзину</button>
+              <button>
+                <Link to="/cart">Перейти в корзину</Link>
+              </button>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 

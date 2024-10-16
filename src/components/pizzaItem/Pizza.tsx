@@ -114,12 +114,11 @@ const Pizza: React.FC<IPizzaProps> = (props: IPizzaProps) => {
           title={props.title}
           price={props.price}
           imageUrl={props.imageUrl}
-          sizes={props.sizes}
-          types={props.types}
           onClose={handlePopupClose}
           description={description}
           addPizzaInPopap={addPizzaToCart}
           id={id}
+          isOpen={isPopupOpen}
         />
       )}
     </div>

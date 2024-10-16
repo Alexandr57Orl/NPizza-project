@@ -26,7 +26,6 @@
   align-items: center;
   gap: 10px;
   margin-block-end: 1rem;
-  animation: fadeIn 0.5s ease-in-out;
 
   img {
     width: 70%;
@@ -64,7 +63,6 @@
     top: 25px;
     right: 25px;
     cursor: pointer;
-    animation: fadeOut 0.5s ease-in-out;
   }
 
   .footerBtn {
@@ -78,25 +76,5 @@
       color: #ffffff;
       cursor: pointer;
     }
-  }
-}
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.5);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-@keyframes fadeOut {
-  0% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(0.5);
   }
 }
