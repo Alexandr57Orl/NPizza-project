@@ -3,7 +3,6 @@
   border: 1px solid #ddd;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  display: flex;
 
   h2 {
     font-weight: bold;
@@ -85,6 +84,7 @@
   display: flex;
   justify-content: space-between;
   gap: 13rem;
+  margin-bottom: 5rem;
 }
 
 .moreInfo {
@@ -100,4 +100,29 @@
   display: flex;
   justify-content: center;
   gap: 20px;
+}
+
+.feedback {
+  display: flex;
+  justify-content: space-around;
+
+  p {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    font-size: 22px;
+    font-weight: 700;
+  }
+  li {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+
+    font-weight: 700;
+  }
+  span {
+    font-size: 10px;
+  }
 }

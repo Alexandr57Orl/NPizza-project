@@ -16,13 +16,13 @@ interface IMobile {
   [key: string]: string;
 }
 export const groupUrls: GroupUrls = {
-  Кромы: "https://vk.com/nasha_pizza_cool",
-  Орёл: "https://vk.com/pizzavorle",
-  Болхов: "https://vk.com/nasha_pizza_bolhov",
+  "Кромы, ул. Карла Маркса, 1": "https://vk.com/nasha_pizza_cool",
+  "Орёл, Московское шоссе, 171": "https://vk.com/pizzavorle",
+  " Болхов, ул. Соловцова, 12В": "https://vk.com/nasha_pizza_bolhov",
 };
 
 export const mobile: IMobile = {
-  Кромы: "+7 (999) 999-99-99",
-  Орёл: "+7 (555) 555-55-55",
-  Болхов: "+7 (777) 777-77-77",
+  "Кромы, ул. Карла Маркса, 1": "+7 (999) 999-99-99",
+  "Орёл, Московское шоссе, 171": "+7 (555) 555-55-55",
+  " Болхов, ул. Соловцова, 12В": "+7 (777) 777-77-77",
 };
