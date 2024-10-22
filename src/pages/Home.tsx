@@ -5,16 +5,13 @@ import { Sort } from "../components/sort/sort";
 import ListPizza from "../components/listPizza/listPizza";
 import Pagination from "../components/Pagination/index";
 import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { fetchItems } from "../services/slices/itemsSlice";
+
 import qs from "qs";
 import { useNavigate } from "react-router-dom";
 import { RootState } from "../services/store";
 
 export const Home = () => {
   const navigate = useNavigate();
-
-  const dispatch = useDispatch<any>();
 
   //redux-test
   const { categoryId, sort, currentPage, searchValue } = useSelector(
@@ -30,20 +27,6 @@ export const Home = () => {
     });
     navigate(`?${queryString}`);
   }, [categoryId, sort.sortPropety, currentPage]);
-
-  React.useEffect(() => {
-    const getItems = async function getItems() {
-      const sortBy = sort.sortPropety.replace("-", "");
-      const order = sort.sortPropety.includes("-") ? "asc" : "desc";
-      const category = categoryId > 0 ? `category=${categoryId}` : "";
-      const search = searchValue.length > 0 ? `&search=${searchValue}` : "";
-
-      dispatch(fetchItems({ sortBy, order, category, search, currentPage }));
-    };
-    window.scrollTo(0, 0);
-    getItems();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [categoryId, sort.sortPropety, searchValue, currentPage]);
 
   return (
     <>

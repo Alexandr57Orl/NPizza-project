@@ -1,34 +1,40 @@
 import Pizza from "../pizzaItem/Pizza";
-// import getItems from "../../utilits/pizzaItems";
 import Skeleton from "../pizzaItem/Skeleton";
 import { v4 as uuidv4 } from "uuid";
-import { useSelector } from "react-redux";
-
 import { Link } from "react-router-dom";
+import { useFetchItemsQuery } from "../../services/slices/itemsSlice";
+import { IPizza } from "../../utilits/interfaceApp";
 import { RootState } from "../../services/store";
+import { useSelector } from "react-redux";
+import { Key } from "react";
 
 export const ListPizza: React.FC = () => {
-  const { items, status } = useSelector((state: RootState) => state.items);
+  const { categoryId, sort, currentPage, searchValue } = useSelector(
+    (state: RootState) => state.filter
+  );
 
-  const filteredItems = items.map((pizza) => (
-    <Pizza
-      sizes={[]}
-      types={[]}
-      description=""
-      key={`pizza-${pizza.id}-${uuidv4()}`}
-      {...pizza}
-    ></Pizza>
-  ));
+  const { data, isLoading, error } = useFetchItemsQuery({
+    sortBy: sort.sortPropety,
+    order: sort.sortPropety.includes("-") ? "asc" : "desc",
+    category: categoryId > 0 ? `category=${categoryId}` : "",
+    search: searchValue.trim() === "" ? "" : `&search=${searchValue}`,
+    currentPage: currentPage,
+  });
+  const filteredItems =
+    data &&
+    data.map((pizza: IPizza, index: Key) => <Pizza key={index} {...pizza} />);
 
   const skeletons = [...new Array(7)].map(() => <Skeleton key={uuidv4()} />);
 
   return (
     <>
-      {status === "error" ? (
+      {isLoading ? (
+        skeletons
+      ) : error ? (
         <div className="content__error-info">
           <h2>Произошла ошибка</h2>
           <p>
-            Попробуйте{" "}
+            Попробуйте{" "}
             <Link to="/" replace className="content__error-text">
               {" "}
               перезагрузить{" "}
@@ -37,7 +43,7 @@ export const ListPizza: React.FC = () => {
           </p>
         </div>
       ) : (
-        <>{status === "loading" ? skeletons : filteredItems}</>
+        <>{filteredItems}</>
       )}
     </>
   );

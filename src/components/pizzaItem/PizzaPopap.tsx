@@ -2,17 +2,7 @@ import React from "react";
 import styles from "./PizzaPopup.module.scss";
 import { Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-
-interface IPizzaPopupProps {
-  title: string;
-  price: number;
-  imageUrl: string;
-  onClose: () => void;
-  description: string; // добавить description
-  addPizzaInPopap: (id: number) => void;
-  id: number;
-  isOpen: boolean;
-}
+import { IPizzaPopupProps } from "../../utilits/interfaceApp";
 
 const PizzaPopup: React.FC<IPizzaPopupProps> = (props) => {
   const {

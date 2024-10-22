@@ -1,16 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
+import { ICartSlice } from "../../utilits/interfaceApp";
 
-export interface ICartSlice {
-  items: {
-    id: number;
-    size: number;
-    type: string;
-    count: number;
-    price: number;
-  }[];
-  totalPrice: number;
-}
 const initialState: ICartSlice = {
   items: [],
   totalPrice: 0,

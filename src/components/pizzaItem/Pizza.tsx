@@ -5,17 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../../services/slices/cartSlice";
 import { selectCartItemById } from "../../services/slices/cartSlice";
 import PizzaPopup from "./PizzaPopap";
-
+import { IPizzaProps } from "../../utilits/interfaceApp";
 const variableTesto = ["Тонкое", "Традиционное"];
-interface IPizzaProps {
-  title: string;
-  price: number;
-  imageUrl: string;
-  sizes: number[];
-  types: number[];
-  id: number;
-  description: string;
-}
 
 const Pizza: React.FC<IPizzaProps> = (props: IPizzaProps) => {
   const { title, price, imageUrl, sizes, types, id, description } = props;

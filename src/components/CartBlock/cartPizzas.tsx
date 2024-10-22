@@ -4,16 +4,7 @@ import {
   minusItem,
   removeItem,
 } from "../../services/slices/cartSlice";
-
-interface ICartPizzasProps {
-  id: number;
-  title: string;
-  price: number;
-  imageUrl: string;
-  size: number;
-  count: number;
-  type: string;
-}
+import { ICartPizzasProps } from "../../utilits/interfaceApp";
 
 export const CartPizzas: React.FC<ICartPizzasProps> = (
   props: ICartPizzasProps
