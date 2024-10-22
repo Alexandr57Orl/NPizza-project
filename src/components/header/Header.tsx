@@ -23,7 +23,14 @@ export const Header: React.FC = () => {
           </Link>
           <div>
             <h1>НПицца</h1>
-            <p>самая вкусная пицца во вселенной</p>
+            <p>
+              <span color="orange">Пицца </span>на все времена!{" "}
+            </p>
+          </div>
+          <div>
+            <p className="header__contacts">
+              <Link to="/contacts">Наши контакты </Link>
+            </p>
           </div>
         </div>
         <Search />

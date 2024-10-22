@@ -1,0 +1,103 @@
+.contactInfo {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+
+  h2 {
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin-bottom: 20px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+
+      i {
+        font-size: 20px;
+        margin-right: 10px;
+        color: #337ab7;
+      }
+
+      span {
+        font-size: 20px;
+        color: #666;
+      }
+
+      a {
+        font-size: 20px;
+        color: #fe5f1e;
+        text-decoration: none;
+        transition: 0.3s ease-in-out;
+
+        &:hover {
+          color: rgb(3, 245, 59);
+          transition: 0.3s ease-in-out;
+        }
+      }
+
+      select {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 20px;
+        color: #666;
+      }
+    }
+  }
+}
+
+.contactInfo::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  opacity: 0.5;
+  z-index: -1;
+}
+
+.contactInfo::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background-image: linear-gradient(to bottom, #f7f7f7, #fff);
+  opacity: 0.5;
+  z-index: -1;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  gap: 13rem;
+}
+
+.moreInfo {
+  font-size: 23px;
+  text-align: center;
+
+  p {
+    margin-bottom: 20px;
+  }
+}
+
+.apps {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
