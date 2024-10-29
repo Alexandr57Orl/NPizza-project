@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Search from "../search";
 import { useSelector } from "react-redux";
 import { selectCart } from "../../services/slices/cartSlice";
 
 export const Header: React.FC = () => {
+  const location = useLocation();
   const { items } = useSelector(selectCart);
   const countPizzas = items.reduce((sum, item) => sum + item.count, 0);
   const totalPrice = items.reduce(
@@ -29,7 +30,9 @@ export const Header: React.FC = () => {
           </div>
           <div>
             <p className="header__contacts">
-              <Link to="/contacts">Наши контакты </Link>
+              {location.pathname !== "/contacts" && (
+                <Link to="/contacts">Наши контакты </Link>
+              )}
             </p>
           </div>
         </div>

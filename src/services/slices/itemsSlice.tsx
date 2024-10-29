@@ -20,7 +20,7 @@ export const fetchItems = baseApi.injectEndpoints({
 const initialState: IItemsSlice = {
   items: [],
   countPizzas: 0,
-  status: "loading",
+
   totalPrice: 0,
 };
 

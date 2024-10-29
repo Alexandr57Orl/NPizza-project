@@ -18,7 +18,6 @@ export interface IItemsSlice {
   }[];
   countPizzas: number;
   totalPrice: number;
-  status: "loading" | "success" | "error";
 }
 
 // interface for Pizza

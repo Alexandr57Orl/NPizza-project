@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./contact.module.scss";
 import { cities, groupUrls, mobile } from "../../utilits/cities";
+import { Link } from "react-router-dom";
 export const ContactForm = () => {
   const [selectedCity, setSelectedCity] = useState("");
   const [selectedCityUrl, setSelectedCityUrl] = useState("");
@@ -14,13 +15,17 @@ export const ContactForm = () => {
 
   return (
     <div className={styles.contactInfo}>
-      <div className={styles.info}>
+      <section className={styles.info}>
         <ul>
           <h2>Контакты</h2>
           <li>
             <i className="fas fa-map-marker-alt"></i>
             <span>Адрес:</span>
-            <select value={selectedCity} onChange={handleCityChange}>
+            <select
+              value={selectedCity}
+              className={styles.inputCity}
+              onChange={handleCityChange}
+            >
               <option value="">Выберите город</option>
               {Object.keys(cities).map((city) => (
                 <option key={city} value={city}>
@@ -55,7 +60,11 @@ export const ContactForm = () => {
           </p>
           <ul className={styles.apps}>
             <li>
-              <a href="https://play.google.com/store/apps/details?id=studio.balalaika.ourpizza&hl=ru">
+              <a
+                href="https://play.google.com/store/apps/details?id=studio.balalaika.ourpizza&hl=ru"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <img
                   src="https://нпицца.рф/assets/google-ab8ed5f2.png"
                   alt="google play"
@@ -68,7 +77,11 @@ export const ContactForm = () => {
               </a>
             </li>
             <li>
-              <a href="https://apps.apple.com/ru/app/нпицца-сеть-пиццерий/id1499485957">
+              <a
+                href="https://apps.apple.com/ru/app/нпицца-сеть-пиццерий/id1499485957"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <img
                   src="https://нпицца.рф/assets/app-ffa5f867.svg"
                   alt="appstore"
@@ -81,7 +94,7 @@ export const ContactForm = () => {
               </a>
             </li>
             <li>
-              <a href="https://нпицца.рф">
+              <a href="https://нпицца.рф" target="_blank" rel="noreferrer">
                 <img
                   src="https://нпицца.рф/assets/android-4570643b.svg"
                   alt="android"
@@ -95,7 +108,26 @@ export const ContactForm = () => {
             </li>
           </ul>
         </div>
-      </div>
+      </section>
+      <section className={styles.feedbackInfo}>
+        <ul className={styles.feedback}>
+          <li>
+            Основатель бренда:{" "}
+            <a href="vk.com/botis" className={styles.botis}>
+              Руслан Ботис
+            </a>
+          </li>
+          <li>
+            Адрес центрального офиса<p>пгт. Кромы, ул. Карла Маркса 1</p>
+          </li>
+          <li>
+            Напишите нам <p>npizza57@yandex.ru</p>
+          </li>
+        </ul>
+      </section>
+      <Link to="/" className="button button--black">
+        <span>Вернуться назад</span>
+      </Link>
     </div>
   );
 };

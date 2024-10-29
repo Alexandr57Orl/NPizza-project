@@ -13,7 +13,11 @@ export const ListPizza: React.FC = () => {
     (state: RootState) => state.filter
   );
 
-  const { data, isLoading, error } = useFetchItemsQuery({
+  const {
+    data: pizzas,
+    isLoading,
+    error,
+  } = useFetchItemsQuery({
     sortBy: sort.sortPropety,
     order: sort.sortPropety.includes("-") ? "asc" : "desc",
     category: categoryId > 0 ? `category=${categoryId}` : "",
@@ -21,8 +25,8 @@ export const ListPizza: React.FC = () => {
     currentPage: currentPage,
   });
   const filteredItems =
-    data &&
-    data.map((pizza: IPizza, index: Key) => <Pizza key={index} {...pizza} />);
+    pizzas &&
+    pizzas.map((pizza: IPizza, index: Key) => <Pizza key={index} {...pizza} />);
 
   const skeletons = [...new Array(7)].map(() => <Skeleton key={uuidv4()} />);
 
