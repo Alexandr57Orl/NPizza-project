@@ -123,6 +123,12 @@ export const ContactForm = () => {
           <li>
             Напишите нам <p>npizza57@yandex.ru</p>
           </li>
+          <li>
+            Вакансии для вас!{" "}
+            <Link to="/vacancies" className="button">
+              <span className={styles.vacancy}>Вакансии</span>
+            </Link>
+          </li>
         </ul>
       </section>
       <Link to="/" className="button button--black">

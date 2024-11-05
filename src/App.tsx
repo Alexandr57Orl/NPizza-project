@@ -6,6 +6,7 @@ import { NotFound } from "./pages/NotFound";
 import { Cart } from "./pages/Cart";
 import { Routes, Route } from "react-router-dom";
 import { ContactForm } from "./components/Contact";
+import { VacancyCard } from "./components/Vacancy";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
               <Route path="/cart" element={<Cart />} />
               <Route path="*" element={<NotFound />} />
               <Route path="/contacts" element={<ContactForm />} />
+              <Route path="/vacancies" element={<VacancyCard />} />
             </Routes>
           </div>
         </div>
