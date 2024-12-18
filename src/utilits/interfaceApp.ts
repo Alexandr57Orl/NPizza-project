@@ -32,15 +32,16 @@ export interface IFilterSlice {
   };
 }
 
+type ICartSliceState = {
+  id: number;
+  size: number;
+  type: string;
+  count: number;
+  price: number;
+};
 // interface for cart
 export interface ICartSlice {
-  items: {
-    id: number;
-    size: number;
-    type: string;
-    count: number;
-    price: number;
-  }[];
+  items: ICartSliceState[];
   totalPrice: number;
 }
 

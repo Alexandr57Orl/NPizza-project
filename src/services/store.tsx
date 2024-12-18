@@ -4,6 +4,7 @@ import filterSlice from "./slices/filterSlice";
 import itemsSlice from "./slices/itemsSlice";
 import cartSlice from "./slices/cartSlice";
 import { baseApi } from "../utilits/baseApi";
+import { TypedUseSelectorHook } from "react-redux";
 
 export const rootReducer = combineReducers({
   filter: filterSlice,
@@ -21,5 +22,9 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(baseApi.middleware),
 });
+
+export type AppDispatch = typeof store.dispatch;
+
+// Создаем собственные хуки для использования dispatch и selector с типизацией
 
 export type RootState = ReturnType<typeof rootReducer>;

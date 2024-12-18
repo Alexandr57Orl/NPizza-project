@@ -26,7 +26,7 @@ export const Home = () => {
       currentPage,
     });
     navigate(`?${queryString}`);
-  }, [categoryId, sort.sortPropety, currentPage]);
+  }, [categoryId, sort.sortPropety, currentPage, searchValue]);
 
   return (
     <>

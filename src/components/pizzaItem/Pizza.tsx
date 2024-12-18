@@ -1,35 +1,35 @@
 import React from "react";
 import { v4 as uuidv4 } from "uuid";
-
 import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../../services/slices/cartSlice";
 import { selectCartItemById } from "../../services/slices/cartSlice";
 import PizzaPopup from "./PizzaPopap";
 import { IPizzaProps } from "../../utilits/interfaceApp";
+
 const variableTesto = ["Тонкое", "Традиционное"];
 
 const Pizza: React.FC<IPizzaProps> = (props: IPizzaProps) => {
   const { title, price, imageUrl, sizes, types, id, description } = props;
-  //Логика попапа
-  const [isPopupOpen, setIsPopupOpen] = React.useState(false);
-  const handlePopupOpen = () => {
-    setIsPopupOpen(true);
-  };
 
-  const handlePopupClose = () => {
-    setIsPopupOpen(false);
-  };
+  const [isPopupOpen, setIsPopupOpen] = React.useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = React.useState(false);
+
+  const handlePopupOpen = () => setIsPopupOpen(true);
+  const handlePopupClose = () => setIsPopupOpen(false);
 
   const dispatch = useDispatch();
-
   const cartItem = useSelector(selectCartItemById(id));
   const addedCount = cartItem ? cartItem.count : 0;
 
   const [activeType, setActiveType] = React.useState(0);
-
   const [activeSize, setActiveSize] = React.useState(0);
 
   const addPizzaToCart = () => {
+    if (isButtonDisabled) {
+      console.log("Кнопка отключена");
+      return;
+    }
+
     const item = {
       Itemid: uuidv4(),
       ...props,
@@ -40,6 +40,12 @@ const Pizza: React.FC<IPizzaProps> = (props: IPizzaProps) => {
     };
 
     dispatch(addItem(item));
+
+    setIsButtonDisabled(true);
+
+    setTimeout(() => {
+      setIsButtonDisabled(false);
+    }, 500);
   };
 
   return (
@@ -78,9 +84,12 @@ const Pizza: React.FC<IPizzaProps> = (props: IPizzaProps) => {
         </div>
         <div className="pizza-block__bottom">
           <div className="pizza-block__price">от {price} ₽</div>
-          <div
-            className="button button--outline button--add"
+          <button
+            className={`button button--outline button--add ${
+              isButtonDisabled ? "disabled" : ""
+            }`}
             onClick={addPizzaToCart}
+            disabled={isButtonDisabled} // Блокируем кнопку
           >
             <svg
               width="12"
@@ -95,9 +104,8 @@ const Pizza: React.FC<IPizzaProps> = (props: IPizzaProps) => {
               />
             </svg>
             <span>Добавить</span>
-
             {addedCount > 0 && <i>{addedCount}</i>}
-          </div>
+          </button>
         </div>
       </div>
       {isPopupOpen && (

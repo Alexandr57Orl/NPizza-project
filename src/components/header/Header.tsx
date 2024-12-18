@@ -2,20 +2,32 @@ import { Link, useLocation } from "react-router-dom";
 import Search from "../search";
 import { useSelector } from "react-redux";
 import { selectCart } from "../../services/slices/cartSlice";
+import { setSearchValue } from "../../services/slices/filterSlice"; // Импортируйте действие для сброса значения
+import { AppDispatch } from "../../services/store";
+import { useDispatch } from "react-redux";
+
+import React from "react";
 
 export const Header: React.FC = () => {
   const location = useLocation();
+  const dispatch = useDispatch<AppDispatch>();
   const { items } = useSelector(selectCart);
   const countPizzas = items.reduce((sum, item) => sum + item.count, 0);
   const totalPrice = items.reduce(
     (sum, item) => sum + item.price * item.count,
     0
   );
+  const [value, setValue] = React.useState<string>("");
+  // Функция для сброса значения поиска
+  const resetSearchValue = () => {
+    setValue("");
+    dispatch(setSearchValue(""));
+  };
   return (
     <div className="header">
       <div className="container">
         <div className="header__logo">
-          <Link to="/" replace>
+          <Link to="/" replace onClick={resetSearchValue}>
             <img
               width="100"
               src="https://нпицца.рф/assets/logo-ff5130ea.png"
@@ -36,7 +48,7 @@ export const Header: React.FC = () => {
             </p>
           </div>
         </div>
-        <Search />
+        <Search value={value} setValue={setValue} />
         <div className="header__cart">
           <Link to="/cart" className="button button--cart">
             <span>{totalPrice} ₽</span>
